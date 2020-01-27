@@ -2,7 +2,7 @@ const Block = require("./block");
 
 const actions = require("../constants");
 
-const { generateProof, isProofValid } = require("../utils/proof");
+const { generateNonce, isNonceValid } = require("../utils/nonce");
 
 class Blockchain {
   constructor(blocks, io) {
@@ -24,18 +24,18 @@ class Blockchain {
 
   async newTransaction(transaction) {
     this.currentTransactions.push(transaction);
-    if (this.currentTransactions.length === 2) {
+    if (this.currentTransactions.length === 5) {
       console.info("Starting mining block...");
       const previousBlock = this.lastBlock();
       process.env.BREAK = false;
       const block = new Block(
-        previousBlock.getIndex() + 1,
+        previousBlock.getNum_block() + 1,
         previousBlock.hashValue(),
-        previousBlock.getProof(),
+        previousBlock.getNonce(),
         this.currentTransactions
       );
-      const { proof, dontMine } = await generateProof(previousBlock.getProof());
-      block.setProof(proof);
+      const { nonce, dontMine } = await generateNonce(previousBlock.getNonce());
+      block.setNonce(nonce);
       this.currentTransactions = [];
       if (dontMine !== "true") {
         this.mineBlock(block);
@@ -59,7 +59,7 @@ class Blockchain {
       if (currentBlock.getPreviousBlockHash() !== previousBlock.hashValue()) {
         return false;
       }
-      if (!isProofValid(previousBlock.getProof(), currentBlock.getProof())) {
+      if (!isNonceValid(previousBlock.getNonce(), currentBlock.getNonce())) {
         return false;
       }
       previousBlock = currentBlock;

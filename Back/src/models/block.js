@@ -3,17 +3,17 @@ const crypto = require("crypto");
 const Transaction = require("./transaction");
 
 class Block {
-  constructor(index, previousBlockHash, previousProof, transactions) {
-    this.index = index;
-    this.proof = previousProof;
+  constructor(num_block, previousBlockHash, nonce, transactions) {
+    this.num_block = num_block;
+    this.nonce = nonce;
     this.previousBlockHash = previousBlockHash;
     this.transactions = transactions;
     this.timestamp = Date.now();
   }
 
   hashValue() {
-    const { index, proof, transactions, timestamp } = this;
-    const blockString = `${index}-${proof}-${JSON.stringify(
+    const { num_block, nonce, transactions, timestamp } = this;
+    const blockString = `${num_block}-${nonce}-${JSON.stringify(
       transactions
     )}-${timestamp}`;
     const hashFunction = crypto.createHash("sha256");
@@ -21,16 +21,16 @@ class Block {
     return hashFunction.digest("hex");
   }
 
-  setProof(proof) {
-    this.proof = proof;
+  setNonce(nonce) {
+    this.nonce = nonce;
   }
 
-  getProof() {
-    return this.proof;
+  getNonce() {
+    return this.nonce;
   }
 
-  getIndex() {
-    return this.index;
+  getNum_block() {
+    return this.num_block;
   }
 
   getPreviousBlockHash() {
@@ -38,10 +38,16 @@ class Block {
   }
 
   getDetails() {
-    const { index, proof, previousBlockHash, transactions, timestamp } = this;
+    const {
+      num_block,
+      nonce,
+      previousBlockHash,
+      transactions,
+      timestamp
+    } = this;
     return {
-      index,
-      proof,
+      num_block,
+      nonce,
       timestamp,
       previousBlockHash,
       transactions: transactions.map(transaction => transaction.getDetails())
@@ -49,8 +55,8 @@ class Block {
   }
 
   parseBlock(block) {
-    this.index = block.index;
-    this.proof = block.proof;
+    this.num_block = block.num_block;
+    this.nonce = block.nonce;
     this.previousBlockHash = block.previousBlockHash;
     this.timestamp = block.timestamp;
     this.transactions = block.transactions.map(transaction => {

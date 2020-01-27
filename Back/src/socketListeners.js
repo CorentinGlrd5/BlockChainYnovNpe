@@ -4,17 +4,20 @@ const Transaction = require("./models/transaction");
 const Blockchain = require("./models/chain");
 
 const socketListeners = (socket, chain) => {
-  socket.on(SocketActions.ADD_TRANSACTION, (sender, receiver, amount) => {
-    const transaction = new Transaction(sender, receiver, amount);
-    chain.newTransaction(transaction);
-    console.info(
-      `Added transaction: ${JSON.stringify(
-        transaction.getDetails(),
-        null,
-        "\t"
-      )}`
-    );
-  });
+  socket.on(
+    SocketActions.ADD_TRANSACTION,
+    (num_page, contenu, titre, auteur) => {
+      const transaction = new Transaction(num_page, contenu, titre, auteur);
+      chain.newTransaction(transaction);
+      console.info(
+        `Added transaction: ${JSON.stringify(
+          transaction.getDetails(),
+          null,
+          "\t"
+        )}`
+      );
+    }
+  );
 
   socket.on(SocketActions.END_MINING, newChain => {
     console.log("End Mining encountered");

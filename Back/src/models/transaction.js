@@ -1,25 +1,29 @@
 class Transaction {
-  constructor(sender, receiver, amount) {
-    this.sender = sender;
-    this.receiver = receiver;
-    this.amount = amount;
+  constructor(num_page, contenu, titre, auteur) {
+    this.num_page = num_page;
+    this.contenu = contenu;
+    this.titre = titre;
+    this.auteur = auteur;
     this.timestamp = Date.now();
   }
 
   getDetails() {
-    const { sender, receiver, amount, timestamp } = this;
+    const { num_page, contenu, titre, auteur, timestamp } = this;
     return {
-      sender,
-      receiver,
-      amount,
+      num_page,
+      contenu,
+      titre,
+      auteur,
       timestamp
     };
   }
 
   parseTransaction(transaction) {
-    this.sender = transaction.sender;
-    this.receiver = transaction.receiver;
-    this.amount = transaction.amount;
+    this.num_page = transaction.num_page;
+    this.contenu = transaction.contenu;
+    this.titre = transaction.titre;
+    this.auteur = transaction.auteur;
+
     this.timestamp = transaction.timestamp;
   }
 }

@@ -36,8 +36,8 @@ app.post("/nodes", (req, res) => {
 });
 
 app.post("/transaction", (req, res) => {
-  const { sender, receiver, amount } = req.body;
-  io.emit(SocketActions.ADD_TRANSACTION, sender, receiver, amount);
+  const { num_page, contenu, titre, auteur } = req.body;
+  io.emit(SocketActions.ADD_TRANSACTION, num_page, contenu, titre, auteur);
   res.json({ message: "transaction success" }).end();
 });
 
