@@ -12,7 +12,7 @@ class Transaction {
       sender,
       receiver,
       amount,
-      timestamp,
+      timestamp
     };
   }
 

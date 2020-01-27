@@ -1,5 +1,5 @@
 {
-  "apps" : [
+  "apps": [
     {
       "name": "Node 1",
       "script": "./src/server.js",

@@ -1,6 +1,6 @@
-const crypto = require('crypto');
+const crypto = require("crypto");
 
-const Transaction = require('./transaction');
+const Transaction = require("./transaction");
 
 class Block {
   constructor(index, previousBlockHash, previousProof, transactions) {
@@ -13,10 +13,12 @@ class Block {
 
   hashValue() {
     const { index, proof, transactions, timestamp } = this;
-    const blockString= `${index}-${proof}-${JSON.stringify(transactions)}-${timestamp}`;
-    const hashFunction = crypto.createHash('sha256');
+    const blockString = `${index}-${proof}-${JSON.stringify(
+      transactions
+    )}-${timestamp}`;
+    const hashFunction = crypto.createHash("sha256");
     hashFunction.update(blockString);
-    return hashFunction.digest('hex');
+    return hashFunction.digest("hex");
   }
 
   setProof(proof) {
@@ -42,7 +44,7 @@ class Block {
       proof,
       timestamp,
       previousBlockHash,
-      transactions: transactions.map(transaction => transaction.getDetails()),
+      transactions: transactions.map(transaction => transaction.getDetails())
     };
   }
 
