@@ -4,6 +4,7 @@ const httpServer = require("http").Server(app);
 const axios = require("axios");
 const io = require("socket.io")(httpServer);
 const client = require("socket.io-client");
+const cors = require("cors");
 
 const BlockChain = require("./models/chain");
 const Block = require("./models/block");
@@ -19,6 +20,7 @@ const blockChain = new BlockChain(null, io);
 global.id = generateId();
 console.log("Bonjour, je suis " + global.id);
 app.use(bodyParser.json());
+app.use(cors());
 
 app.post("/nodes", (req, res) => {
   const { host, port } = req.body;
