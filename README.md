@@ -16,7 +16,7 @@ Pour ce projet il suffit d'installer un invite de commande, Github et NodeJs.
  * NodeJs : https://nodejs.org/en/download/
 ```
 
-### Installation
+### Utilisation
 
 Voici les différentes étapes d'installation pour faire fonctionner le projet correctement.
 
@@ -28,22 +28,28 @@ git clone https://github.com/CorentinGlrd5/BlockChainYnovNpe.git
 
 _Placez vous dans le dossier ou se situe le clône du projet et lancer dans votre invite de commande :_
 
+_Blockchain :_
+
 ```
+cd Back
 npm install
+npm start
 ```
 
-## Deploiement
-
-_Placez vous dans le dossier "Back" et lancer dans votre invite de commande :_
+_Ajout du livre :_
 
 ```
-npm run start
+cd Back/script
+npm install
+npm start
 ```
 
-_Placez vous ensuite dans le dossier "Front" et lancer dans votre invite de commande :_
+_Front :_
 
 ```
-npm run start
+cd Front
+npm install
+npm start
 ```
 
 _Ouvrez votre navigateur favori et rentrez l'url :_
