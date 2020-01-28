@@ -1,5 +1,5 @@
 {
-  "name": "js-blockchain",
+  "name": "BlockchainChallenge48h",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -15,11 +15,11 @@
     "socket",
     "websocket"
   ],
-  "author": "Adarsh",
-  "license": "MIT",
+  "author": "EquipeNPE",
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "elliptic": "^6.5.2",
     "express": "^4.16.3",
     "pm2": "^3.2.2",
     "socket.io": "^2.1.1",
