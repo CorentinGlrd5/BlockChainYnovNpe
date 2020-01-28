@@ -1,36 +1,29 @@
-<div class="card" [class.border-primary]="isSelectedBlock()">
+<div class="card" [class.border-primary]="">
     <div class="card-body">
-      <h5 class="card-title">Block numéro {{ block.num_block}} <small class="text-muted" *ngIf="block.previousHash == 0">(Genesis block)</small></h5>
+      <h5 class="card-title">Page numéro {{ page.num_page}}</h5>
     </div>
 
      <ul class="list-group list-group-flush">
 	    <li class="list-group-item">
-	    	<span class="">Hash</span>
-	    	<br>
-	    	<div class="text-truncate">
-	    		<small>{{block.hash}}</small>
-	    	</div>
-
-			<br>
-			<span class="">Hash of previous block</span>
+			<span class=""></span>
 	    	<br>
 
 	    	<div class="text-truncate">
-	    		<small>{{ block.previousBlockHash }}</small>
+	    		<small>{{ page.contenu }}</small>
 	    	</div>
 	    </li>
 
 	    <li class="list-group-item">
-	    	<span class="">Nonce</span><br>
+	    	<span class="">Auteur</span><br>
 	    	<div class="text-truncate text-muted">
-	    		<small>{{ block.nonce }}</small>
+	    		<small>{{ page.auteur }}</small>
 	    	</div>
 	    </li>
 
 	    <li class="list-group-item">
-	    	<span class="">Timestamp</span><br>
+	    	<span class="">Titre</span><br>
 	    	<div class="text-truncate text-muted">
-	    		<small>{{ block.timestamp }}</small>
+	    		<small>{{ page.titre }}</small>
 	    	</div>
 	    </li>
 	  </ul>

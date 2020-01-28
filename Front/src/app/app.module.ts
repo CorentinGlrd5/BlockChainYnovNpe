@@ -9,9 +9,15 @@ import { BlockchainViewerComponent } from "./pages/blockchain-viewer/blockchain-
 
 import { BlockchainService } from "./services/blockchain.service";
 import { HttpClientModule } from "@angular/common/http";
+import { PageComponent } from "./page/page.component";
 
 @NgModule({
-  declarations: [AppComponent, BlockViewComponent, BlockchainViewerComponent],
+  declarations: [
+    AppComponent,
+    BlockViewComponent,
+    BlockchainViewerComponent,
+    PageComponent
+  ],
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
   providers: [BlockchainService],
   bootstrap: [AppComponent]

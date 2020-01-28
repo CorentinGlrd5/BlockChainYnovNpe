@@ -13,14 +13,14 @@
 
 <br><br>
 
-<div class="container">
-	<h1>Pages dans le block numéro {{ selectedBlock.num_block }}</h1>
-	<app-block-view
+<div class="container" style="overflow-x: scroll;white-space: nowrap;">
+	<h1>Pages dans le block numÃ©ro {{ selectedBlock.num_block }}</h1>
+	<app-page
 		*ngFor="let page of selectedBlock.pages"
-		[block]="page"
-		[selectedBlock]="selectedBlock"
-		(click)="showTransactions(block)"
-	></app-block-view>
+		[page]="page"
+		[selectedPage]="selectedPage"
+		(click)="showTransactions(page)"
+	></app-page>
 	<!--<app-transactions-table
 		[pages]="selectedBlock.pages"
 	></app-transactions-table> -->
