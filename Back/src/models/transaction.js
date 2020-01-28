@@ -1,29 +1,19 @@
 class Transaction {
-  constructor(num_page, contenu, titre, auteur) {
-    this.num_page = num_page;
-    this.contenu = contenu;
-    this.titre = titre;
-    this.auteur = auteur;
+  constructor(pages) {
+    this.pages = pages;
     this.timestamp = Date.now();
   }
 
   getDetails() {
-    const { num_page, contenu, titre, auteur, timestamp } = this;
+    const { pages, timestamp } = this;
     return {
-      num_page,
-      contenu,
-      titre,
-      auteur,
+      pages,
       timestamp
     };
   }
 
   parseTransaction(transaction) {
-    this.num_page = transaction.num_page;
-    this.contenu = transaction.contenu;
-    this.titre = transaction.titre;
-    this.auteur = transaction.auteur;
-
+    this.pages = transaction.pages;
     this.timestamp = transaction.timestamp;
   }
 }

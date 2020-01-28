@@ -13,17 +13,4 @@ const generateNonce = previousNonce =>
     });
   });
 
-const isNonceValid = (previousNonce, currentNonce) => {
-  const difference = currentNonce - previousNonce;
-  const nonceString = `difference-${difference}`;
-  const hashFunction = crypto.createHash("sha256");
-  hashFunction.update(nonceString);
-  const hexString = hashFunction.digest("hex");
-  if (hexString.includes("000000")) {
-    return true;
-  }
-  return false;
-};
-
 exports.generateNonce = generateNonce;
-exports.isNonceValid = isNonceValid;

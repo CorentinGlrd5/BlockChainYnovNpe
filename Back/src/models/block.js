@@ -3,28 +3,56 @@ const crypto = require("crypto");
 const Transaction = require("./transaction");
 
 class Block {
-  constructor(num_block, previousBlockHash, nonce, transactions) {
+  constructor(num_block, previousBlockHash, pages, validatorId, hash, nonce) {
     this.num_block = num_block;
+    this.hash = hash;
     this.nonce = nonce;
     this.previousBlockHash = previousBlockHash;
-    this.transactions = transactions;
+    this.pages = pages;
+    this.validatorId = validatorId;
     this.timestamp = Date.now();
   }
 
   hashValue() {
-    const { num_block, nonce, transactions, timestamp } = this;
+    const { num_block, nonce, pages, timestamp } = this;
     const blockString = `${num_block}-${nonce}-${JSON.stringify(
-      transactions
+      pages
     )}-${timestamp}`;
     const hashFunction = crypto.createHash("sha256");
     hashFunction.update(blockString);
     return hashFunction.digest("hex");
   }
+  init() {
+    this.hash = this.hashValue();
+    this.mineBlock(1);
+  }
+  mineBlock(difficulty) {
+    if (this.num_block === 0) {
+      return;
+    }
+    console.log("Minage en cours....");
+    while (
+      this.hash.substring(0, difficulty) !== Array(difficulty + 1).join("0")
+    ) {
+      this.nonce++;
+      this.hash = this.hashValue();
+    }
+    this.validatorId = global.id;
+    console.log("Miné: " + this.nonce);
+  }
 
   setNonce(nonce) {
     this.nonce = nonce;
   }
-
+  getHash() {
+    return this.hash;
+  }
+  setValidator(id) {
+    this.validatorId = id;
+  }
+  getTimestamp() {
+    return this.timestamp;
+  }
   getNonce() {
     return this.nonce;
   }
@@ -42,7 +70,9 @@ class Block {
       num_block,
       nonce,
       previousBlockHash,
-      transactions,
+      validatorId,
+      hash,
+      pages,
       timestamp
     } = this;
     return {
@@ -50,7 +80,9 @@ class Block {
       nonce,
       timestamp,
       previousBlockHash,
-      transactions: transactions.map(transaction => transaction.getDetails())
+      validatorId,
+      hash,
+      pages: pages.map(page => page.getDetails())
     };
   }
 
@@ -59,15 +91,15 @@ class Block {
     this.nonce = block.nonce;
     this.previousBlockHash = block.previousBlockHash;
     this.timestamp = block.timestamp;
-    this.transactions = block.transactions.map(transaction => {
+    this.pages = block.pages.map(transaction => {
       const parsedTransaction = new Transaction();
       parsedTransaction.parseTransaction(transaction);
       return parsedTransaction;
     });
   }
 
-  printTransactions() {
-    this.transactions.forEach(transaction => console.log(transaction));
+  printpages() {
+    this.pages.forEach(transaction => console.log(transaction));
   }
 }
 
