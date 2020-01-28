@@ -15,17 +15,21 @@ for (let i = 1; i < 20; i++) {
   pages.push(page);
   if (i % 5 == 0) {
     console.log("mod");
-    sendData(pages);
+    sendDataToAllNodes(pages, "http://localhost");
     pages = [];
   }
 }
-function sendData(pages) {
+function sendDataToAllNodes(pages, baseurl) {
+  for (let j = 0; j < 3; j++) {
+    sendData(pages, baseurl + ":500" + j);
+  }
+}
+function sendData(pages, url) {
   var p = {
     pages: pages
   };
   var xhr = new XMLHttpRequest();
-  var url = "http://localhost:5000/transaction";
-  xhr.open("POST", url, false);
+  xhr.open("POST", url + "/transaction", false);
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
