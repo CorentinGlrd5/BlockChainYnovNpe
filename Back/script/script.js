@@ -1,26 +1,39 @@
 // Read files
 
 const fs = require("fs");
-const readline = require("readline");
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-function allPages() {
-  for (let index = 0; index < array.length; index++) {
-    const element = array[index];
+var pages = [];
+
+for (let i = 1; i < 20; i++) {
+  var page = {
+    num_page: i,
+    contenu: fs.readFileSync("./files/" + i + ".txt", "utf8"),
+    titre: "Bel ami",
+    auteur: "Guy de Maupassant"
+  };
+  pages.push(page);
+  if (i % 5 == 0) {
+    console.log("mod");
+    sendData(pages);
+    pages = [];
   }
 }
-
-fs.readFile("./files/page1.txt", "utf8", function(err, data) {
-  if (err) {
-    return console.log(err);
-  }
-  var body = [
-    {
-      pages: []
+function sendData(pages) {
+  var p = {
+    pages: pages
+  };
+  var xhr = new XMLHttpRequest();
+  var url = "http://localhost:5000/transaction";
+  xhr.open("POST", url, false);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      console.log("ok");
+      //var json = JSON.parse(xhr.responseText);
+      //console.log(json.email + ", " + json.password);
     }
-  ];
-  for (let i = 0; i < 5; i++) {
-    allBody = data + i;
-  }
-  console.log(data);
-  console.log(allBody);
-});
+  };
+  console.log(p);
+  xhr.send(JSON.stringify(p));
+}
