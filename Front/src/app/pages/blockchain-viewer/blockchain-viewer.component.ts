@@ -15,7 +15,7 @@ export class BlockchainViewerComponent implements OnInit {
   constructor(private http: HttpClient) {
     this.initBlocks();
     this.selectedBlock = this.blocks[0];
-    console.log(this.blocks);
+    // console.log(this.blocks);
   }
 
   ngOnInit() {}
@@ -25,7 +25,7 @@ export class BlockchainViewerComponent implements OnInit {
     });
   }
   showTransactions(block) {
-    console.log(block);
+    // console.log(block);
     this.selectedBlock = block;
     return false;
   }

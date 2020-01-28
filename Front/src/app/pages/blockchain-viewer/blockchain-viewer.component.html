@@ -1,28 +1,33 @@
 <div class="container">
-	<h1>Blockchain</h1>
+  <h1>Blockchain</h1>
 </div>
 
-<div class="container" style="overflow-x: scroll;white-space: nowrap;">
-	<app-block-view
-		*ngFor="let block of blocks"
-		[block]="block"
-		[selectedBlock]="selectedBlock"
-		(click)="showTransactions(block)"
-	></app-block-view>
+<div
+  class="container-blockChain"
+  style="overflow-x: scroll;white-space: nowrap;"
+>
+  <app-block-view
+    *ngFor="let block of blocks"
+    [block]="block"
+    [selectedBlock]="selectedBlock"
+    (click)="showTransactions(block)"
+  ></app-block-view>
 </div>
 
-<br><br>
+<br /><br />
 
-<div class="container" style="overflow-x: scroll;white-space: nowrap;">
-	<h1>Pages dans le block numéro {{ selectedBlock.num_block }}</h1>
-	<app-page
-		*ngFor="let page of selectedBlock.pages"
-		[page]="page"
-		[selectedPage]="selectedPage"
-		(click)="showTransactions(page)"
-	></app-page>
-	<!--<app-transactions-table
+<div class="container">
+  <h1>Pages dans le block numéro {{ selectedBlock.num_block }}</h1>
+</div>
+
+<div class="container-pages" style="overflow-x: scroll;white-space: nowrap;">
+  <app-page
+    *ngFor="let page of selectedBlock.pages"
+    [page]="page"
+    [selectedPage]="selectedPage"
+    (click)="showPages()"
+  ></app-page>
+  <!--<app-transactions-table
 		[pages]="selectedBlock.pages"
 	></app-transactions-table> -->
 </div>
-

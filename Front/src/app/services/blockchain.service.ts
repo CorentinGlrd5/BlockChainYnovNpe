@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Blockchain } from 'SavjeeCoin/src/blockchain';
-import EC from 'elliptic';
+import { Injectable } from "@angular/core";
+import { Blockchain } from "SavjeeCoin/src/blockchain";
+import EC from "elliptic";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class BlockchainService {
   public blockchainInstance = new Blockchain();
@@ -11,7 +11,7 @@ export class BlockchainService {
 
   constructor() {
     this.blockchainInstance.difficulty = 1;
-    this.blockchainInstance.minePendingTransactions('hi');
+    this.blockchainInstance.minePendingTransactions("hi");
     this.generateWalletKeys();
   }
 
@@ -26,16 +26,16 @@ export class BlockchainService {
   }
 
   generateWalletKeys() {
-    const ec = new EC.ec('secp256k1');
+    const ec = new EC.ec("secp256k1");
     const key = ec.genKeyPair();
 
     this.walletKeys.push({
       keyObj: key,
-      publicKey: key.getPublic('hex'),
-      privateKey: key.getPrivate('hex'),
+      publicKey: key.getPublic("hex"),
+      privateKey: key.getPrivate("hex")
     });
 
-    console.log(this.walletKeys);
+    // console.log(this.walletKeys);
   }
 
   getPendingTransactions() {
