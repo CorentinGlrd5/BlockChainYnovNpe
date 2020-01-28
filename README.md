@@ -20,27 +20,36 @@ Pour ce projet il suffit d'installer un invite de commande, de Github et de Node
 
 Voici les différentes étapes d'installation pour faire fonctionner le projet correctement.
 
+_Clôner le projet dans le dossier de votre choix depuis votre invite de commande grâce à la commande :_
+
 ```
-* Clôner le projet dans le dossier de votre choix depuis votre invite de commande grâce à la commande :
 git clone https://github.com/CorentinGlrd5/BlockChainYnovNpe.git
+```
 
-* Placez vous dans le dossier ou se situe le clône du projet et lancer dans votre invite de commande :
+_Placez vous dans le dossier ou se situe le clône du projet et lancer dans votre invite de commande :_
+
+```
 npm install
-
 ```
 
 ## Deploiement
 
+_Placez vous dans le dossier "Back" et lancer dans votre invite de commande :_
+
 ```
-* Placez vous dans le dossier "Back" et lancer dans votre invite de commande :
 npm run start
+```
 
-* Placez vous ensuite dans le dossier "Front" et lancer dans votre invite de commande :
+_Placez vous ensuite dans le dossier "Front" et lancer dans votre invite de commande :_
+
+```
 npm run start
+```
 
-* Ouvrez votre navigateur favori et rentrez l'url :
+_Ouvrez votre navigateur favori et rentrez l'url :_
+
+```
 localhost:4200
-
 ```
 
 ## Versions
