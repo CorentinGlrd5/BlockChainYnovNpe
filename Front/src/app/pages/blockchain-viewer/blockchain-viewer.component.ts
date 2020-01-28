@@ -1,24 +1,31 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { BlockchainService } from '../../services/blockchain.service';
-@Component({
-  selector: 'app-blockchain-viewer',
-  templateUrl: './blockchain-viewer.component.html',
-  styleUrls: ['./blockchain-viewer.component.scss']
-})
-export class BlockchainViewerComponent implements OnInit {
+import { Component, OnInit, Input } from "@angular/core";
+import { BlockchainService } from "../../services/blockchain.service";
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
+@Component({
+  selector: "app-blockchain-viewer",
+  templateUrl: "./blockchain-viewer.component.html",
+  styleUrls: ["./blockchain-viewer.component.scss"]
+})
+@Injectable()
+export class BlockchainViewerComponent implements OnInit {
   public blocks = [];
   public selectedBlock = null;
 
-  constructor(private blockchainService: BlockchainService) {
-    this.blocks = blockchainService.blockchainInstance.chain;
+  constructor(private http: HttpClient) {
+    this.initBlocks();
     this.selectedBlock = this.blocks[0];
     console.log(this.blocks);
   }
 
-  ngOnInit() {
+  ngOnInit() {}
+  initBlocks() {
+    this.http.get("http://localhost:5000/chain").subscribe(res => {
+      this.blocks = res as JSON[];
+      //console.log(res);
+    });
   }
-
   showTransactions(block) {
     console.log(block);
     this.selectedBlock = block;
@@ -26,7 +33,7 @@ export class BlockchainViewerComponent implements OnInit {
   }
 
   blockHasTx(block) {
-    return block.transactions.length > 0;
+    return block.pages.length > 0;
   }
 
   selectedBlockHasTx() {
