@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "Node 1",
+      "name": "Node 0",
       "script": "./src/server.js",
       "watch": ["src/"],
       "env": {
@@ -9,7 +9,7 @@
       }
     },
     {
-      "name": "Node 2",
+      "name": "Node 1",
       "script": "./src/server.js",
       "watch": ["src/"],
       "env": {
@@ -17,11 +17,27 @@
       }
     },
     {
-      "name": "Node 3",
+      "name": "Node 2",
       "script": "./src/server.js",
       "watch": ["src/"],
       "env": {
         "PORT": "5002"
+      }
+    },
+    {
+      "name": "Node 3",
+      "script": "./src/server.js",
+      "watch": ["src/"],
+      "env": {
+        "PORT": "5003"
+      }
+    },
+    {
+      "name": "Node 4",
+      "script": "./src/server.js",
+      "watch": ["src/"],
+      "env": {
+        "PORT": "5004"
       }
     }
   ]

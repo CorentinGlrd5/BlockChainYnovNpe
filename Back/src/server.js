@@ -17,6 +17,7 @@ const { PORT } = process.env;
 
 const blockChain = new BlockChain(null, io);
 
+global.port = process.env;
 global.id = generateId();
 console.log("Bonjour, je suis " + global.id);
 app.use(bodyParser.json());
@@ -43,8 +44,6 @@ app.post("/nodes", (req, res) => {
 
 app.post("/transaction", (req, res) => {
   const { pages } = req.body;
-  console.log("lastBlock");
-  console.log(blockChain.lastBlock());
   var newBlock = new Block(
     blockChain.lastBlock().getNum_block() + 1,
     blockChain.lastBlock().getHash(),
@@ -80,7 +79,7 @@ function generateId() {
   return rtn;
 }
 blockChain.addNode(
-  socketListeners(client(`http://localhost:${PORT}`), blockChain)
+  socketListeners(client(`http://localhost:${PORT}`), blockChain, io)
 );
 
 httpServer.listen(PORT, () =>
