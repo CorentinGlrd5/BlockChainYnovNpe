@@ -8,7 +8,7 @@ Ces instructions vous permettront d'obtenir une copie du projet sur votre ordina
 
 ### Pré-requis
 
-Pour ce projet il suffit d'installer un invite de commande, de Github et de NodeJs.
+Pour ce projet il suffit d'installer un invite de commande, Github et NodeJs.
 
 ```
  * CMD, PowerShell, Terminal
