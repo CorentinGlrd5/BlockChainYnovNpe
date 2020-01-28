@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { BlockchainService } from "../../services/blockchain.service";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
@@ -23,7 +22,6 @@ export class BlockchainViewerComponent implements OnInit {
   initBlocks() {
     this.http.get("http://localhost:5000/chain").subscribe(res => {
       this.blocks = res as JSON[];
-      //console.log(res);
     });
   }
   showTransactions(block) {
