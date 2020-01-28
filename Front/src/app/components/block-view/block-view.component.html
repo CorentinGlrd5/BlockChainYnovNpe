@@ -1,22 +1,22 @@
 <div class="card" [class.border-primary]="isSelectedBlock()">
     <div class="card-body">
-      <h5 class="card-title">Block {{ getBlockNumber() }} <small class="text-muted" *ngIf="block.previousHash == 0">(Genesis block)</small></h5>
+      <h5 class="card-title">Block numéro {{ block.num_block}} <small class="text-muted" *ngIf="block.previousHash == 0">(Genesis block)</small></h5>
     </div>
 
      <ul class="list-group list-group-flush">
 	    <li class="list-group-item">
 	    	<span class="">Hash</span>
 	    	<br>
-	    	<div class="text-truncate" [style.color]="'#' + block.hash.substring(0,6)">
-	    		<small>{{ block.hash }}</small>
+	    	<div class="text-truncate">
+	    		<small>{{block.hash}}</small>
 	    	</div>
 
 			<br>
 			<span class="">Hash of previous block</span>
 	    	<br>
 
-	    	<div class="text-truncate" [style.color]="'#' + block.previousHash.substring(0,6)">
-	    		<small>{{ block.previousHash }}</small>
+	    	<div class="text-truncate">
+	    		<small>{{ block.previousBlockHash }}</small>
 	    	</div>
 	    </li>
 
