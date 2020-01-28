@@ -1,12 +1,11 @@
 <div class="container">
-	<h1>Blocks on chain</h1>
-	<p>Each card represents a block on the chain. Click on a block to see the transactions stored inside.</p>
+	<h1>Blockchain</h1>
 </div>
 
 <div class="container" style="overflow-x: scroll;white-space: nowrap;">
-	<app-block-view 
-		*ngFor="let block of blocks" 
-		[block]="block" 
+	<app-block-view
+		*ngFor="let block of blocks"
+		[block]="block"
 		[selectedBlock]="selectedBlock"
 		(click)="showTransactions(block)"
 	></app-block-view>
@@ -14,11 +13,16 @@
 
 <br><br>
 
-<div class="container">
-	<h1>Transactions inside block {{ getBlockNumber(selectedBlock) }}</h1>
-
-	<app-transactions-table
-		[transactions]="selectedBlock.transactions"
-	></app-transactions-table>
+<div class="container" style="overflow-x: scroll;white-space: nowrap;">
+	<h1>Pages dans le block numéro {{ selectedBlock.num_block }}</h1>
+	<app-page
+		*ngFor="let page of selectedBlock.pages"
+		[page]="page"
+		[selectedPage]="selectedPage"
+		(click)="showTransactions(page)"
+	></app-page>
+	<!--<app-transactions-table
+		[pages]="selectedBlock.pages"
+	></app-transactions-table> -->
 </div>
 
