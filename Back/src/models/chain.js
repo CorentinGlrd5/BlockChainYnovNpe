@@ -27,6 +27,7 @@ class Blockchain {
 
   addBlock(block) {
     this.blocks.push(block);
+    this.io.emit(actions.SEND_BLOCK, block);
   }
 
   async newTransaction(transaction) {
@@ -45,12 +46,14 @@ class Blockchain {
       this.mineBlock(block);
     }
   }
-  checkIfBlockExist(block) {
-    this.blocks.forEach(b => {
-      if (b.hashValue() === block.hashValue()) {
+  blockExist(block) {
+    for (let j = 0; j < this.blocks.length; j++) {
+      const element = this.blocks[j];
+      if (element.getHash() === block.getHash()) {
+        console.log("block exist");
         return true;
       }
-    });
+    }
     return false;
   }
 
@@ -64,21 +67,11 @@ class Blockchain {
   }
 
   checkValidity(block) {
-    console.log("1:" + block.getPreviousBlockHash());
-    console.log("2:" + this.lastBlock().getHash());
     if (block.getPreviousBlockHash() != this.lastBlock().getHash()) {
-      console.log("Error 1");
       return false;
     }
-    if (this.checkIfBlockExist(block)) {
-      if (
-        block.getHash() === this.lastBlock().hashValue() &&
-        block.getTimestamp() < this.lastBlock().getTimestamp()
-      ) {
-        this.blocks[this.blocks.length - 1].pop();
-        return true;
-      }
-      console.log("Error 2");
+    if (this.blockExist(block)) {
+      console.log("LE BLOC EXISTE");
       return false;
     }
     return true;

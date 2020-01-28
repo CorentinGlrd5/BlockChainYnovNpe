@@ -1,22 +1,22 @@
 const SocketActions = require("./constants");
 const Block = require("./models/block");
 
-const Transaction = require("./models/transaction");
-const Blockchain = require("./models/chain");
-
-const socketListeners = (socket, chain) => {
-  socket.on(SocketActions.ADD_TRANSACTION, pages => {
-    const transaction = new Transaction(pages);
-    chain.newTransaction(transaction);
-    console.info(
-      `Added transaction: ${JSON.stringify(
-        transaction.getDetails(),
-        null,
-        "\t"
-      )}`
+const socketListeners = (socket, chain, io) => {
+  socket.on(SocketActions.SEND_BLOCK, b => {
+    console.log("send block from " + global.port);
+    const block = new Block(
+      b.num_block,
+      b.previousBlockHash,
+      b.pages,
+      b.validatorId,
+      b.hash,
+      b.nonce
     );
+    console.log("emit on " + global.port);
+    io.emit(SocketActions.ADD_BLOCK, block);
   });
   socket.on(SocketActions.ADD_BLOCK, blockToCheck => {
+    console.log("ajout d'un block on :" + global.port);
     const block = new Block(
       blockToCheck.num_block,
       blockToCheck.previousBlockHash,
@@ -26,27 +26,12 @@ const socketListeners = (socket, chain) => {
       blockToCheck.nonce
     );
     if (chain.checkValidity(block)) {
+      block.validatorId = global.id;
       chain.addBlock(block);
     } else {
       console.log("Block en erreur");
     }
-    //console.info(`Added block: ${JSON.stringify(block, null, "\t")}`);
-    chain.printBlocks();
   });
-
-  socket.on(SocketActions.END_MINING, newChain => {
-    console.log("End Mining encountered");
-    process.env.BREAK = true;
-    const blockChain = new Blockchain();
-    blockChain.parseChain(newChain);
-    if (
-      blockChain.checkValidity() &&
-      blockChain.getLength() >= chain.getLength()
-    ) {
-      chain.blocks = blockChain.blocks;
-    }
-  });
-
   return socket;
 };
 

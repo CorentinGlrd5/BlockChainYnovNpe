@@ -14,17 +14,15 @@ class Block {
   }
 
   hashValue() {
-    const { num_block, nonce, pages, timestamp } = this;
-    const blockString = `${num_block}-${nonce}-${JSON.stringify(
-      pages
-    )}-${timestamp}`;
+    const { nonce, pages } = this;
+    const blockString = `${nonce}-${JSON.stringify(pages)}`;
     const hashFunction = crypto.createHash("sha256");
     hashFunction.update(blockString);
     return hashFunction.digest("hex");
   }
   init() {
     this.hash = this.hashValue();
-    this.mineBlock(1);
+    this.mineBlock(3);
   }
   mineBlock(difficulty) {
     if (this.num_block === 0) {
@@ -37,7 +35,6 @@ class Block {
       this.nonce++;
       this.hash = this.hashValue();
     }
-    this.validatorId = global.id;
     console.log("Miné: " + this.nonce);
   }
 
