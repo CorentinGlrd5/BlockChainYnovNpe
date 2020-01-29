@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
-  selector: "app-page",
-  templateUrl: "./page.component.html",
-  styleUrls: ["./page.component.scss"]
+  selector: "app-block-page",
+  templateUrl: "./block-page.component.html",
+  styleUrls: ["./block-page.component.scss"]
 })
-export class PageComponent implements OnInit {
+export class BlockPageComponent implements OnInit {
   @Input()
   public page;
 

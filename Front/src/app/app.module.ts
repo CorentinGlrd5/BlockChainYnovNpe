@@ -6,17 +6,16 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BlockViewComponent } from "./components/block-view/block-view.component";
 import { BlockchainViewerComponent } from "./pages/blockchain-viewer/blockchain-viewer.component";
-
 import { BlockchainService } from "./services/blockchain.service";
 import { HttpClientModule } from "@angular/common/http";
-import { PageComponent } from "./page/page.component";
+import { BlockPageComponent } from "./components/block-page/block-page.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     BlockViewComponent,
-    BlockchainViewerComponent,
-    PageComponent
+    BlockPageComponent,
+    BlockchainViewerComponent
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
   providers: [BlockchainService],

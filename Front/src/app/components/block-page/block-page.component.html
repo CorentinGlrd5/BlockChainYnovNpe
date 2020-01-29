@@ -1,0 +1,35 @@
+<div class="card" [class.border-primary]="">
+  <div class="card-body">
+    <h5 class="card-title">Page numéro {{ page.num_page }}</h5>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <span class=""></span>
+      <br />
+
+      <div class="text-truncate">
+        <small>{{ page.contenu }}</small>
+      </div>
+    </li>
+
+    <li class="list-group-item">
+      <span class="">Auteur</span><br />
+      <div class="text-truncate text-muted">
+        <small>{{ page.auteur }}</small>
+      </div>
+    </li>
+
+    <li class="list-group-item">
+      <span class="">Titre</span><br />
+      <div class="text-truncate text-muted">
+        <small>{{ page.titre }}</small>
+      </div>
+    </li>
+  </ul>
+
+  <!-- <div class="card-body"> -->
+  <!-- <span class="card-link" *ngIf="!blockHasTx()">Block has no transactions</span> -->
+  <!-- <span class="card-link" *ngIf="blockHasTx()">Contains {{block.transactions.length}} transactions</span> -->
+  <!-- </div> -->
+</div>

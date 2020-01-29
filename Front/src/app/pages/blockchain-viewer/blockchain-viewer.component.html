@@ -21,12 +21,12 @@
 </div>
 
 <div class="container-pages" style="overflow-x: scroll;white-space: nowrap;">
-  <app-page
+  <app-block-page
     *ngFor="let page of selectedBlock.pages"
     [page]="page"
     [selectedPage]="selectedPage"
     (click)="showPages()"
-  ></app-page>
+  ></app-block-page>
   <!--<app-transactions-table
 		[pages]="selectedBlock.pages"
 	></app-transactions-table> -->
