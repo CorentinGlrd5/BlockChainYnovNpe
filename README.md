@@ -48,7 +48,7 @@ _Front :_
 ```
 cd Front
 npm install
-npm start
+ng serve 
 ```
 
 _Ouvrez votre navigateur favori et rentrez l'url :_
