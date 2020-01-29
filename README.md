@@ -32,38 +32,23 @@ _Blockchain :_
 
 ```
 cd Back
-```
-
-```
 npm install
-```
-
-```
-npm run start
+npm start
 ```
 
 _Ajout du livre :_
 
 ```
 cd Back/script
-```
-
-```
 node script.js
 ```
 
 _Front :_
 
 ```
-cd
-```
-
-```
+cd Front
 npm install
-```
-
-```
-npm run start
+npm start
 ```
 
 _Ouvrez votre navigateur favori et rentrez l'url :_
