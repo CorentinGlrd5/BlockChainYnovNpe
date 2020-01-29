@@ -47,6 +47,16 @@ _Placez vous dans le dossier "Back" et lancer dans votre invite de commande :_
 npm run start
 ```
 
+_Ajout du livre :_
+
+```
+cd Back/script
+```
+
+```
+node script.js
+```
+
 ## Versions
 
 Prendre les dernières versions disponibles
